@@ -7,7 +7,8 @@ interface ParagraphProps {
 }
 
 const StyledParagraph = styled.p`
-  font-family: ${(props) => props.theme.typography.fontFamily.regular}
+  font-family: ${(props) => props.theme.typography.fontFamily.regular};
+  margin: 0;
 `;
 
 const Paragraph = ({ children, className }: ParagraphProps) => (

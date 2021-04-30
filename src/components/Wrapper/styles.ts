@@ -10,3 +10,8 @@ export const StyledDiv = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
+
+export const StyledDivHeader = styled.div`
+  border-bottom: 1px solid #ffffff;
+  text-align: center;
+`;

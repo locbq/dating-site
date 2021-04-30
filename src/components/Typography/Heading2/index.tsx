@@ -7,7 +7,8 @@ interface Heading2Props {
 }
 
 const StyledHeading2 = styled.h2`
-  font-family: ${(props) => props.theme.typography.fontFamily.heading}
+  font-family: ${(props) => props.theme.typography.fontFamily.heading};
+  margin: 0;
 `;
 
 const Heading2 = ({ children, className }: Heading2Props) => (

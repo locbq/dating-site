@@ -7,7 +7,8 @@ interface Heading5Props {
 }
 
 const StyledHeading5 = styled.h5`
-  font-family: ${(props) => props.theme.typography.fontFamily.heading}
+  font-family: ${(props) => props.theme.typography.fontFamily.heading};
+  margin: 0;
 `;
 
 const Heading5 = ({ children, className }: Heading5Props) => (

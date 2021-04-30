@@ -7,7 +7,8 @@ interface Heading3Props {
 }
 
 const StyledHeading3 = styled.h3`
-  font-family: ${(props) => props.theme.typography.fontFamily.heading}
+  font-family: ${(props) => props.theme.typography.fontFamily.heading};
+  margin: 0;
 `;
 
 const Heading3 = ({ children, className }: Heading3Props) => (

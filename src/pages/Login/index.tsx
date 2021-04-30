@@ -3,7 +3,7 @@ import React from 'react';
 import Wrapper from 'components/Wrapper';
 
 const Login = () => (
-  <Wrapper>login</Wrapper>
+  <Wrapper header="Welcome">login</Wrapper>
 );
 
 export default Login;

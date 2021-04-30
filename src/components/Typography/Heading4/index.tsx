@@ -7,7 +7,8 @@ interface Heading4Props {
 }
 
 const StyledHeading4 = styled.h4`
-  font-family: ${(props) => props.theme.typography.fontFamily.heading}
+  font-family: ${(props) => props.theme.typography.fontFamily.heading};
+  margin: 0;
 `;
 
 const Heading4 = ({ children, className }: Heading4Props) => (
