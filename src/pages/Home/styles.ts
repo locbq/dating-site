@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import Heading1 from 'components/Typography/Heading1';
 import Heading4 from 'components/Typography/Heading4';
@@ -24,6 +25,11 @@ export const StyledDivButtonContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+export const StyledLink = styled(Link)`
+  width: 100%;
+  text-align: center;
 `;
 
 export const StyledButton = styled(Button)`

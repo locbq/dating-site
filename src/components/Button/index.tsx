@@ -3,7 +3,7 @@ import BootstrapButton from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import styled from 'styled-components';
 
-interface ButtonProps {
+interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
   loading?: boolean;
   children?: React.ReactNode;

@@ -1,4 +1,5 @@
 import Home from 'pages/Home';
+import Login from 'pages/Login';
 import SignUp from 'pages/SignUp';
 
 import { RouteModel } from 'types/route/route.model';
@@ -18,7 +19,7 @@ const appRoutes: RouteModel[] = [
   {
     exact: true,
     path: PATH_LOGIN,
-    component: Home,
+    component: Login,
   },
   {
     exact: true,

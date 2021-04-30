@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const StyledDivApp = styled.div`
   background-image: url(${bgImg});
-  backgroubd-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
 `;
