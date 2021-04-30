@@ -1,7 +1,9 @@
 import React from 'react';
 
+import Wrapper from 'components/Wrapper';
+
 const Login = () => (
-  <div>login</div>
+  <Wrapper>login</Wrapper>
 );
 
 export default Login;
