@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface ParagraphProps {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 const StyledParagraph = styled.p`
@@ -15,5 +15,9 @@ const Paragraph = ({ children, className }: ParagraphProps) => (
     {children}
   </StyledParagraph>
 );
+
+Paragraph.defaultProps = {
+  className: '',
+};
 
 export default Paragraph;

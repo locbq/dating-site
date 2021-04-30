@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface Heading3Props {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 const StyledHeading3 = styled.h3`
@@ -15,5 +15,9 @@ const Heading3 = ({ children, className }: Heading3Props) => (
     {children}
   </StyledHeading3>
 );
+
+Heading3.defaultProps = {
+  className: '',
+};
 
 export default Heading3;
