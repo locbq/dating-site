@@ -11,7 +11,6 @@ import {
   StyledDivButtonContainer,
   StyledLink,
   StyledButton,
-  StyledParagraph,
 } from './styles';
 
 const Home = () => (
@@ -28,11 +27,6 @@ const Home = () => (
       <StyledLink to={PATH_LOGIN}>
         <StyledButton variant="primary">Check your matches</StyledButton>
       </StyledLink>
-      <StyledParagraph>
-        This page is for single Fitter to meet and date each other! <br />
-        Type in your personal information and wait for the Fit.Love to begin! <br />
-        Thank you for using our site.
-      </StyledParagraph>
     </StyledDivButtonContainer>
   </Wrapper>
 );

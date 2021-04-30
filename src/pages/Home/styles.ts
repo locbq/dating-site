@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import Heading1 from 'components/Typography/Heading1';
 import Heading4 from 'components/Typography/Heading4';
-import Paragraph from 'components/Typography/Paragraph';
 import Button from 'components/Button';
 
 export const StyledHeading4 = styled(Heading4)`
@@ -36,11 +35,4 @@ export const StyledButton = styled(Button)`
   text-transform: uppercase;
   width: 80%;
   margin-bottom: 1rem;
-`;
-
-export const StyledParagraph = styled(Paragraph)`
-  text-align: center;
-  color: #ffffff;
-  font-size: 14px;
-  margin-top: 1rem;
 `;
