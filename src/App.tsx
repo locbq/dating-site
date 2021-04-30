@@ -10,6 +10,7 @@ import Theme from 'theme';
 import { RouteModel } from 'types/route/route.model';
 import appRoutes from 'routes/routes.routes';
 import bgImg from 'assets/images/bg.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const StyledDivApp = styled.div`
   background-image: url(${bgImg});

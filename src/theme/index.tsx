@@ -11,6 +11,7 @@ interface ThemeProps {
 const theme: DefaultTheme = {
   colors: {
     main: '#fd8b4b',
+    mainDarker: '#fd7224',
     secondary: '#231d1f',
   },
   typography: {

@@ -1,9 +1,9 @@
-import Heading2 from 'components/Typography/Heading2';
 import React from 'react';
 
 import {
   StyledDiv,
   StyledDivHeader,
+  StyledHeading2,
 } from './styles';
 
 interface WrapperProps {
@@ -14,7 +14,7 @@ interface WrapperProps {
 const Wrapper = ({ children, header }: WrapperProps) => (
   <StyledDiv>
     <StyledDivHeader>
-      <Heading2>{header}</Heading2>
+      <StyledHeading2>{header}</StyledHeading2>
     </StyledDivHeader>
     {children}
   </StyledDiv>
