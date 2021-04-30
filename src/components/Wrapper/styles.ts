@@ -17,6 +17,7 @@ export const StyledDiv = styled.div`
 export const StyledDivHeader = styled.div`
   border-bottom: 1px solid #ffffff;
   text-align: center;
+  margin-bottom: 1.5rem;
 `;
 
 export const StyledHeading2 = styled(Heading2)`

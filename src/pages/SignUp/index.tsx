@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import Wrapper from 'components/Wrapper';
 import { PATH_LOGIN } from 'routes/routes.paths';
 import {
-  StyledForm,
   StyledParagraph,
   StyledDivRadio,
   StyledALink,
@@ -18,7 +17,7 @@ import {
 
 const SignUp = () => (
   <Wrapper header="Sign Up">
-    <StyledForm>
+    <Form>
       <Form.Group
         as={Row}
         controlId="name"
@@ -186,7 +185,7 @@ const SignUp = () => (
           Sign Up
         </StyledButton>
       </Form.Group>
-    </StyledForm>
+    </Form>
     <StyledParagraphLink>
       Already have an account?  <Link to={PATH_LOGIN}>Click here to login</Link>
     </StyledParagraphLink>

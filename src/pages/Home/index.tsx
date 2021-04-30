@@ -4,6 +4,7 @@ import Wrapper from 'components/Wrapper';
 import {
   PATH_LOGIN,
   PATH_SIGN_UP,
+  PATH_RESULT,
 } from 'routes/routes.paths';
 import {
   StyledHeading4,
@@ -24,7 +25,7 @@ const Home = () => (
       <StyledLink to={PATH_LOGIN}>
         <StyledButton variant="primary">Login to an existing account</StyledButton>
       </StyledLink>
-      <StyledLink to={PATH_LOGIN}>
+      <StyledLink to={PATH_RESULT}>
         <StyledButton variant="primary">Check your matches</StyledButton>
       </StyledLink>
     </StyledDivButtonContainer>

@@ -1,12 +1,7 @@
 import styled from 'styled-components';
-import Form from 'react-bootstrap/Form';
 
 import Paragraph from 'components/Typography/Paragraph';
 import Button from 'components/Button';
-
-export const StyledForm = styled(Form)`
-  margin-top: 1.5rem;
-`;
 
 export const StyledParagraph = styled(Paragraph)`
   color: #ffffff;
