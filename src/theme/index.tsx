@@ -10,8 +10,14 @@ interface ThemeProps {
 
 const theme: DefaultTheme = {
   colors: {
-    main: '',
-    secondary: '',
+    main: '#fd8b4b',
+    secondary: '#231d1f',
+  },
+  typography: {
+    fontFamily: {
+      heading: '"Montserrat", sans-serif',
+      regular: '"Open Sans", sans-serif',
+    },
   },
 };
 

@@ -4,10 +4,19 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Theme from 'theme';
 import { RouteModel } from 'types/route/route.model';
 import appRoutes from 'routes/routes.routes';
+import bgImg from 'assets/images/bg.jpg';
+
+const StyledDivApp = styled.div`
+  background-image: url(${bgImg});
+  backgroubd-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+`;
 
 function App() {
   const renderRoutes = (routes: RouteModel[]) => routes.map((route) => (<Route
@@ -20,12 +29,11 @@ function App() {
   return (
     <Theme>
       <Router>
-        <div className="App">
+        <StyledDivApp>
           <Switch>
             {renderRoutes(appRoutes)}
           </Switch>
-          <h1>Hello World</h1>
-        </div>
+        </StyledDivApp>
       </Router>
     </Theme>
   );

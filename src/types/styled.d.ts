@@ -6,5 +6,11 @@ declare module 'styled-components' {
       main: string;
       secondary: string;
     };
+    typography: {
+      fontFamily: {
+        heading: string;
+        regular: string;
+      }
+    }
   }
 }
