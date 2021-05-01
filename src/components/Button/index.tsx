@@ -47,7 +47,11 @@ const StyledButton = styled(BootstrapButton)`
 `;
 
 const Button = ({
-  variant, loading, children, className, ...props
+  variant,
+  loading,
+  children,
+  className,
+  ...props
 } : ButtonProps) => (
   <StyledButton
     variant={variant}

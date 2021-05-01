@@ -7,4 +7,4 @@ export const emailSchema = yup
 
 export const passwordSchema = yup
   .string()
-  .required('Email cannot be empty');
+  .required('Password cannot be empty');

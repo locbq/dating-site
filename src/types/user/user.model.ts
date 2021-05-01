@@ -8,5 +8,5 @@ export interface UserModel {
   favoriteOs: string,
   minSeekingAge: number,
   maxSeekingAge: number,
-  passsword: string,
+  password: string,
 }

@@ -9,6 +9,6 @@ export const defaultUserList = [
     favoriteOs: 'windows',
     minSeekingAge: 18,
     maxSeekingAge: 30,
-    passsword: '123456',
+    password: '123456',
   },
 ];

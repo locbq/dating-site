@@ -1,12 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { isEmpty } from 'lodash';
 
 import Wrapper from 'components/Wrapper';
+import ErrorMessage from 'components/ErrorMessage';
 import { PATH_SIGN_UP } from 'routes/routes.paths';
-import { isEmpty } from 'lodash';
+import login from 'helpers/login';
+import useUsers from 'hooks/useUsers';
 import {
   StyledParagraph,
   StyledButton,
@@ -23,6 +26,7 @@ interface LoginInfoModel {
 }
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [loginInfo, setLoginInfo] = useState<LoginInfoModel>({
     email: '',
     password: '',
@@ -31,12 +35,14 @@ const Login = () => {
     email: '',
     password: '',
   });
+  const users = useUsers();
+  const history = useHistory();
 
   const isSubmittable = useMemo(
-    () => !isEmpty(errorMessages.email)
-    || !isEmpty(errorMessages.password)
-    || isEmpty(loginInfo.email)
-    || isEmpty(loginInfo.password),
+    () => isEmpty(errorMessages.email)
+    && isEmpty(errorMessages.password)
+    && !isEmpty(loginInfo.email)
+    && !isEmpty(loginInfo.password),
     [
       errorMessages.email,
       errorMessages.password,
@@ -63,8 +69,19 @@ const Login = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!isSubmittable) {
-      console.log(123);
+    if (isSubmittable) {
+      setIsLoading(true);
+      const response = login(loginInfo, users);
+      if (response) {
+        setTimeout(() => {
+          history.push('/');
+          setIsLoading(false);
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+      }
     }
   };
 
@@ -86,6 +103,7 @@ const Login = () => {
               type="email"
               onChange={handleChangeEmail}
             />
+            <ErrorMessage message={errorMessages.email} />
           </Col>
         </Form.Group>
         <Form.Group
@@ -103,10 +121,12 @@ const Login = () => {
               type="password"
               onChange={handleChangePassword}
             />
+            <ErrorMessage message={errorMessages.password} />
           </Col>
         </Form.Group>
         <Form.Group>
           <StyledButton
+            loading={isLoading}
             type="submit"
           >
             Login

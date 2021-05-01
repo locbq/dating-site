@@ -12,7 +12,7 @@ const userReducer = (
 ) => {
   switch (action.type) {
     case ADD_USERS:
-      return [...state, action.payload];
+      return [...state, ...action.payload];
     default:
       return state;
   }
