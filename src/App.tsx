@@ -1,29 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import styled from 'styled-components';
+
+import Theme from 'theme';
+import { RouteModel } from 'types/route/route.model';
+import appRoutes from 'routes/routes.routes';
+import bgImg from 'assets/images/bg.jpg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const StyledDivApp = styled.div`
+  background-image: url(${bgImg});
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+`;
 
 function App() {
+  const renderRoutes = (routes: RouteModel[]) => routes.map((route) => (<Route
+    exact={route.exact}
+    key={route.path}
+    path={route.path}
+    component={route.component}
+  />));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img
-          src={logo}
-          className="App-logo"
-          alt="logo"
-        />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Theme>
+      <Router>
+        <StyledDivApp>
+          <Switch>
+            {renderRoutes(appRoutes)}
+          </Switch>
+        </StyledDivApp>
+      </Router>
+    </Theme>
   );
 }
 
