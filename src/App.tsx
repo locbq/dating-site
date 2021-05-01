@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { addUsers } from 'store/user/user.action';
 
 import Theme from 'theme';
 import { RouteModel } from 'types/route/route.model';
 import appRoutes from 'routes/routes.routes';
 import bgImg from 'assets/images/bg.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { UserModel } from 'types/user/user.model';
 
 const StyledDivApp = styled.div`
   background-image: url(${bgImg});
@@ -20,12 +23,16 @@ const StyledDivApp = styled.div`
 `;
 
 function App() {
+  const [users, setUsers] = useState<UserModel[]>([]);
+  const dispatch = useDispatch();
+
   const renderRoutes = (routes: RouteModel[]) => routes.map((route) => (<Route
     exact={route.exact}
     key={route.path}
     path={route.path}
     component={route.component}
   />));
+  dispatch(addUsers(users));
 
   return (
     <Theme>
