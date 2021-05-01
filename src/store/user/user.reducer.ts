@@ -1,6 +1,6 @@
 import {
   ADD_USERS,
-  AddUsersAction,
+  UserActionTypes,
 } from 'types/action/action.model';
 import { UserModel } from 'types/user/user.model';
 
@@ -8,7 +8,7 @@ const initialState: UserModel[] = [];
 
 const userReducer = (
   state = initialState,
-  action: AddUsersAction,
+  action: UserActionTypes,
 ) => {
   switch (action.type) {
     case ADD_USERS:

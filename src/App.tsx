@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useCallback,
+} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +16,8 @@ import { RouteModel } from 'types/route/route.model';
 import appRoutes from 'routes/routes.routes';
 import bgImg from 'assets/images/bg.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { UserModel } from 'types/user/user.model';
+import { defaultUserList } from 'data/users.data';
+import useUsers from 'hooks/useUsers';
 
 const StyledDivApp = styled.div`
   background-image: url(${bgImg});
@@ -23,8 +27,16 @@ const StyledDivApp = styled.div`
 `;
 
 function App() {
-  const [users, setUsers] = useState<UserModel[]>([]);
   const dispatch = useDispatch();
+  const users = useUsers();
+  const addUserToList = useCallback(() => {
+    if (users.length === 0) {
+      dispatch(addUsers(defaultUserList));
+    }
+  }, [dispatch, users.length]);
+  useEffect(() => {
+    addUserToList();
+  }, [addUserToList]);
 
   const renderRoutes = (routes: RouteModel[]) => routes.map((route) => (<Route
     exact={route.exact}
@@ -32,7 +44,6 @@ function App() {
     path={route.path}
     component={route.component}
   />));
-  dispatch(addUsers(users));
 
   return (
     <Theme>
