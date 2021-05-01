@@ -1,6 +1,7 @@
 import Home from 'pages/Home';
 import Login from 'pages/Login';
-import SignUp from 'pages/SignUp';
+import PersonalInformation from 'pages/SignUp/PersonalInformation';
+import Preference from 'pages/SignUp/Preference';
 import Result from 'pages/Result';
 
 import { RouteModel } from 'types/route/route.model';
@@ -8,8 +9,9 @@ import { RouteModel } from 'types/route/route.model';
 import {
   PATH_BASE,
   PATH_LOGIN,
-  PATH_SIGN_UP,
   PATH_RESULT,
+  PATH_SIGN_UP_PERSONAL_INFORMATION,
+  PATH_SIGN_UP_PREFERENCE,
 } from './routes.paths';
 
 const appRoutes: RouteModel[] = [
@@ -25,8 +27,12 @@ const appRoutes: RouteModel[] = [
   },
   {
     exact: true,
-    path: PATH_SIGN_UP,
-    component: SignUp,
+    path: PATH_SIGN_UP_PERSONAL_INFORMATION,
+    component: PersonalInformation,
+  }, {
+    exact: true,
+    path: PATH_SIGN_UP_PREFERENCE,
+    component: Preference,
   },
   {
     exact: true,

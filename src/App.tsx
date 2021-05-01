@@ -1,11 +1,13 @@
 import React, {
   useEffect,
   useCallback,
+  ReactElement,
 } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
 } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
@@ -18,6 +20,7 @@ import bgImg from 'assets/images/bg.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { defaultUserList } from 'data/users.data';
 import useUsers from 'hooks/useUsers';
+import { PATH_SIGN_UP, PATH_SIGN_UP_PERSONAL_INFORMATION } from 'routes/routes.paths';
 
 const StyledDivApp = styled.div`
   background-image: url(${bgImg});
@@ -50,6 +53,11 @@ function App() {
       <Router>
         <StyledDivApp>
           <Switch>
+            <Route
+              exact
+              path={PATH_SIGN_UP}
+              render={(): ReactElement => <Redirect to={PATH_SIGN_UP_PERSONAL_INFORMATION} />}
+            />
             {renderRoutes(appRoutes)}
           </Switch>
         </StyledDivApp>
