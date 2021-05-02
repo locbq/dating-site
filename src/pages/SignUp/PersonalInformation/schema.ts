@@ -1,13 +1,6 @@
 import * as yup from 'yup';
 
 export const signUpSchema = yup.object().shape({
-  name: yup
-    .string()
-    .required('Name cannot be empty'),
-  email: yup
-    .string()
-    .email('Invalid email')
-    .required('Email cannot be empty'),
   age: yup
     .number()
     .min(18, 'Age must be at least 18')
@@ -30,10 +23,4 @@ export const signUpSchema = yup.object().shape({
     .positive('Invalide age')
     .integer('Invalide age')
     .required('Max age cannot be empty'),
-  password: yup
-    .string()
-    .required('Password cannot be empty'),
-  confirmPassword: yup
-    .string()
-    .required('Password cannot be empty'),
 });

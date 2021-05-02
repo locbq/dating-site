@@ -10,27 +10,21 @@ import ErrorMessage from 'components/ErrorMessage';
 import { PATH_LOGIN } from 'routes/routes.paths';
 import {
   StyledParagraph,
-  StyledDivRadio,
   StyledALink,
   StyledDivInput,
   StyledButton,
   StyledParagraphLink,
-} from './styles';
+} from '../styles';
 import { signUpSchema } from './schema';
 
 const SignUp = () => {
   const formik = useFormik({
     initialValues: {
-      name: '',
-      email: '',
-      gender: 'M',
       age: '',
       personalityType: '',
       favoriteOs: 'windows',
       minSeekingAge: '',
       maxSeekingAge: '',
-      password: '',
-      confirmPassword: '',
     },
     onSubmit: (values) => console.log(values),
     validationSchema: signUpSchema,
