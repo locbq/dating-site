@@ -11,16 +11,4 @@ export const defaultUserList = [
     maxSeekingAge: 30,
     password: '123456',
   },
-  {
-    id: '2',
-    name: 'Test',
-    email: 'admin@gmail.com',
-    gender: 'M',
-    age: 25,
-    personalityType: 'ESTJ',
-    favoriteOs: 'windows',
-    minSeekingAge: 18,
-    maxSeekingAge: 30,
-    password: '123456',
-  },
 ];
