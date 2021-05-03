@@ -27,7 +27,13 @@ export const StyledDivName = styled.div`
 export const StyledTable = styled(Table)`
   color: #ffffff;
   font-family: ${(props) => props.theme.typography.fontFamily.regular};
-  & tbody td {
-    text-align: center;
+  & tbody {
+    th {
+      width: 50%;
+    };
+    td {
+      width: 50%;
+      text-align: center;
+    }
   }
 `;

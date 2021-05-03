@@ -20,7 +20,10 @@ import bgImg from 'assets/images/bg.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { defaultUserList } from 'data/users.data';
 import useUsers from 'hooks/useUsers';
-import { PATH_SIGN_UP, PATH_SIGN_UP_PERSONAL_INFORMATION } from 'routes/routes.paths';
+import {
+  PATH_SIGN_UP,
+  PATH_SIGN_UP_PERSONAL_INFORMATION,
+} from 'routes/routes.paths';
 
 const StyledDivApp = styled.div`
   background-image: url(${bgImg});
