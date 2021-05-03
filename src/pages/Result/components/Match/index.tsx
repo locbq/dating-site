@@ -2,7 +2,9 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 
 import maleAvatar from 'assets/images/male.jpg';
+import femaleAvatar from 'assets/images/female.jpg';
 import Heading5 from 'components/Typography/Heading5';
+import { UserModel } from 'types/user/user.model';
 import {
   StyledRow,
   StyledCol,
@@ -11,17 +13,21 @@ import {
   StyledTable,
 } from './styles';
 
-const Match = () => (
+interface MatchProps {
+  user: UserModel;
+}
+
+const Match = ({ user }: MatchProps) => (
   <StyledRow>
     <StyledCol md={4}>
       <StyledImage
-        src={maleAvatar}
+        src={user.gender === 'M' ? maleAvatar : femaleAvatar}
         alt="avatar"
       />
     </StyledCol>
     <Col md={8}>
       <StyledDivName>
-        <Heading5>Bruce Wayne</Heading5>
+        <Heading5>{user.name}</Heading5>
       </StyledDivName>
 
       <StyledTable
@@ -31,19 +37,19 @@ const Match = () => (
         <tbody>
           <tr>
             <th>Gender</th>
-            <td>M</td>
+            <td>{user.gender}</td>
           </tr>
           <tr>
             <th>Age</th>
-            <td>40</td>
+            <td>{user.age}</td>
           </tr>
           <tr>
             <th>Type</th>
-            <td>INTJ</td>
+            <td>{user.personalityType}</td>
           </tr>
           <tr>
             <th>OS</th>
-            <td>Linux</td>
+            <td>{user.favoriteOs}</td>
           </tr>
         </tbody>
       </StyledTable>
