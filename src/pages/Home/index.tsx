@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Wrapper from 'components/Wrapper';
 import {
@@ -17,13 +18,31 @@ import {
 } from './styles';
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState({
+    logout: false,
+    matches: false,
+  });
+  const history = useHistory();
+
   const token = localStorage.getItem(TOKEN_NAME) as string;
   const decryptedToken = token && decrypt(token);
 
   const handleLogout = (event) => {
     event.preventDefault();
-    localStorage.clear();
-    window.location.href = '/';
+    setIsLoading({ ...isLoading, logout: true });
+    setTimeout(() => {
+      setIsLoading({ ...isLoading, logout: false });
+      localStorage.clear();
+      history.push(PATH_LOGIN);
+    }, 1000);
+  };
+  const handleCheckMatches = (event) => {
+    event.preventDefault();
+    setIsLoading({ ...isLoading, matches: true });
+    setTimeout(() => {
+      setIsLoading({ ...isLoading, matches: false });
+      history.push(PATH_RESULT);
+    }, 1000);
   };
 
   return (
@@ -42,15 +61,22 @@ const Home = () => {
           </StyledLink>
         ) : (
           <StyledButton
+            loading={isLoading.logout}
             variant="primary"
             onClick={handleLogout}
           >
             Logout of existing account
           </StyledButton>
         )}
-        <StyledLink to={PATH_RESULT}>
-          <StyledButton variant="primary">Check your matches</StyledButton>
-        </StyledLink>
+        {decryptedToken?.id || decryptedToken?.email ? (
+          <StyledButton
+            loading={isLoading.matches}
+            variant="primary"
+            onClick={handleCheckMatches}
+          >
+            Check your matches
+          </StyledButton>
+        ) : null}
       </StyledDivButtonContainer>
     </Wrapper>
   );

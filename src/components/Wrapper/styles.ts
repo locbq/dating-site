@@ -30,7 +30,7 @@ export const StyledParagraph = styled(Paragraph)`
   text-align: center;
   color: #ffffff;
   font-size: 14px;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 `;
 
 export const StyledParagraphLink = styled(StyledParagraph)`
