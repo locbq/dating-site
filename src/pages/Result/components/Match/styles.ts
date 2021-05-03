@@ -27,6 +27,7 @@ export const StyledDivName = styled.div`
 export const StyledTable = styled(Table)`
   color: #ffffff;
   font-family: ${(props) => props.theme.typography.fontFamily.regular};
+  margin-bottom: 0;
   & tbody {
     th {
       width: 50%;
