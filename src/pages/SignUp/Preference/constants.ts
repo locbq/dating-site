@@ -1,0 +1,18 @@
+export const LIST_OF_PERSONALITY_TYPE = [
+  'ESTJ',
+  'ESTP',
+  'ESFJ',
+  'ESFP',
+  'ISTJ',
+  'ISTP',
+  'ISFJ',
+  'ISFP',
+  'ENTJ',
+  'ENTP',
+  'ENFJ',
+  'ENFP',
+  'INTJ',
+  'INTP',
+  'INFJ',
+  'INFP',
+];

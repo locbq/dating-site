@@ -13,6 +13,7 @@ const theme: DefaultTheme = {
     main: '#fd8b4b',
     mainDarker: '#fd7224',
     secondary: '#231d1f',
+    danger: '#f5222d',
   },
   typography: {
     fontFamily: {

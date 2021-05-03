@@ -6,6 +6,7 @@ declare module 'styled-components' {
       main: string;
       mainDarker: string;
       secondary: string;
+      danger: string;
     };
     typography: {
       fontFamily: {

@@ -3,8 +3,8 @@ import BootstrapButton from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 import styled from 'styled-components';
 
-interface ButtonProps extends React.HTMLProps<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+  variant?: 'primary' | 'secondary',
   loading?: boolean;
   children?: React.ReactNode;
   className?: string;
@@ -47,14 +47,16 @@ const StyledButton = styled(BootstrapButton)`
 `;
 
 const Button = ({
-  children,
   variant,
   loading,
+  children,
   className,
+  ...props
 } : ButtonProps) => (
   <StyledButton
     variant={variant}
     className={className}
+    {...props}
   >
     {loading ? <Spinner animation="border" /> : children}
   </StyledButton>
