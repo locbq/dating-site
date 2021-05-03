@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Row from 'react-bootstrap/Row';
 
 import Paragraph from 'components/Typography/Paragraph';
 import Button from 'components/Button';
@@ -16,6 +17,20 @@ export const StyledDiv = styled.div`
   }
 `;
 
+export const StyledRow = styled(Row)`
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  & > div {
+    &: first-child {
+      padding-right: 0.5rem;
+    };
+    &: last-child {
+      padding-left: 0.5rem;
+    }
+  }
+`;
+
 export const StyledDivRadio = styled(StyledDiv)`
   & > div {
     margin-right: 1rem;
@@ -25,12 +40,6 @@ export const StyledDivRadio = styled(StyledDiv)`
 export const StyledALink = styled.a`
   color: ${(props) => props.theme.colors.main};
   font-size: 12px;
-`;
-
-export const StyledDivInput = styled(StyledDiv)`
-  & p {
-    margin: 0 1rem 0 1rem;
-  }
 `;
 
 export const StyledParagraphLink = styled(StyledParagraph)`

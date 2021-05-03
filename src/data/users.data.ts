@@ -1,6 +1,6 @@
 export const defaultUserList = [
   {
-    id: 1,
+    id: '1',
     name: 'Admin',
     email: 'admin@gmail.com',
     gender: 'M',

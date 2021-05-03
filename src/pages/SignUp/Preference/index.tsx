@@ -1,58 +1,78 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
+import {
+  Link,
+  useHistory,
+} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useFormik } from 'formik';
+import { v4 as uuidv4 } from 'uuid';
 
 import Wrapper from 'components/Wrapper';
 import ErrorMessage from 'components/ErrorMessage';
-import { PATH_LOGIN } from 'routes/routes.paths';
+import {
+  PATH_LOGIN,
+  PATH_SIGN_UP_PERSONAL_INFORMATION,
+} from 'routes/routes.paths';
+import { isEmpty } from 'lodash';
+import { addUsers } from 'store/user/user.action';
 import {
   StyledParagraph,
   StyledALink,
-  StyledDivInput,
   StyledButton,
   StyledParagraphLink,
+  StyledRow,
 } from '../styles';
 import { signUpSchema } from './schema';
+import { LIST_OF_PERSONALITY_TYPE } from './constants';
 
-const SignUp = () => {
+const SignUp = (props) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
-      age: '',
-      personalityType: '',
+      personalityType: 'ESTP',
       favoriteOs: 'windows',
-      minSeekingAge: '',
-      maxSeekingAge: '',
+      minSeekingAge: Number(''),
+      maxSeekingAge: Number(''),
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => {
+      setIsLoading(true);
+      const userData = {
+        ...values,
+        id: uuidv4(),
+        name: props.location?.state?.name,
+        email: props.location?.state?.email,
+        age: Number(props.location?.state?.age),
+        gender: props.location?.state?.gender,
+        password: props.location?.state?.password,
+        minSeekingAge: Number(values.minSeekingAge),
+        maxSeekingAge: Number(values.maxSeekingAge),
+      };
+      setTimeout(() => {
+        setIsLoading(false);
+        dispatch(addUsers([userData]));
+        history.push('/login');
+      }, 1000);
+    },
     validationSchema: signUpSchema,
   });
+
+  useEffect(() => {
+    if (isEmpty(props.location?.state?.email) || isEmpty(props.location?.state?.password)) {
+      history.push(PATH_SIGN_UP_PERSONAL_INFORMATION);
+    }
+  }, [history, props.location?.state?.email, props.location?.state?.password]);
 
   return (
     <Wrapper header="Sign Up">
       <Form onSubmit={formik.handleSubmit}>
-        <Form.Group
-          as={Row}
-          controlId="age"
-        >
-          <Form.Label
-            column
-            md={4}
-          >
-            <StyledParagraph>Age</StyledParagraph>
-          </Form.Label>
-          <Col md={8}>
-            <Form.Control
-              type="text"
-              name="age"
-              value={formik.values.age}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.age && formik.touched.age && <ErrorMessage message={formik.errors.age} />}
-          </Col>
-        </Form.Group>
         <Form.Group
           as={Row}
           controlId="personalityType"
@@ -65,11 +85,21 @@ const SignUp = () => {
           </Form.Label>
           <Col md={8}>
             <Form.Control
-              type="text"
+              custom
+              as="select"
               name="personalityType"
               value={formik.values.personalityType}
               onChange={formik.handleChange}
-            />
+            >
+              {LIST_OF_PERSONALITY_TYPE.map((type) => (
+                <option
+                  key={type}
+                  value={type}
+                >
+                  {type}
+                </option>
+              ))}
+            </Form.Control>
             <StyledALink href="http://www.humanmetrics.com/cgi-win/jtypes2.asp">(Don't know your type?)</StyledALink>
             {formik.errors.personalityType && formik.touched.personalityType
             && <ErrorMessage message={formik.errors.personalityType} />}
@@ -112,31 +142,37 @@ const SignUp = () => {
             <StyledParagraph>Seeking age</StyledParagraph>
           </Form.Label>
           <Col md={8}>
-            <StyledDivInput>
-              <Form.Control
-                type="text"
-                placeholder="min"
-                name="minSeekingAge"
-                value={formik.values.minSeekingAge}
-                onChange={formik.handleChange}
-              />
-              <StyledParagraph>to</StyledParagraph>
-              <Form.Control
-                type="text"
-                placeholder="max"
-                name="maxSeekingAge"
-                value={formik.values.maxSeekingAge}
-                onChange={formik.handleChange}
-              />
-            </StyledDivInput>
-            {formik.errors.minSeekingAge && formik.touched.minSeekingAge
+            <StyledRow noGutters>
+              <Col md={6}>
+                <Form.Control
+                  type="text"
+                  placeholder="min"
+                  name="minSeekingAge"
+                  value={formik.values.minSeekingAge === 0 ? '' : formik.values.minSeekingAge}
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.minSeekingAge && formik.touched.minSeekingAge
               && <ErrorMessage message={formik.errors.minSeekingAge} />}
-            {formik.errors.maxSeekingAge && formik.touched.maxSeekingAge
-              && <ErrorMessage message={formik.errors.maxSeekingAge} />}
+              </Col>
+              <Col md={6}>
+                <Form.Control
+                  type="text"
+                  placeholder="max"
+                  name="maxSeekingAge"
+                  value={formik.values.maxSeekingAge === 0 ? '' : formik.values.maxSeekingAge}
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.maxSeekingAge && formik.touched.maxSeekingAge
+                  && <ErrorMessage message={formik.errors.maxSeekingAge} />}
+              </Col>
+            </StyledRow>
+            <StyledRow noGutters />
+
           </Col>
         </Form.Group>
         <Form.Group>
           <StyledButton
+            loading={isLoading}
             variant="primary"
             type="submit"
           >

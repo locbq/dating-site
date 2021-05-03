@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 import {
   Link,
   useHistory,
@@ -10,7 +13,10 @@ import { useFormik } from 'formik';
 
 import Wrapper from 'components/Wrapper';
 import ErrorMessage from 'components/ErrorMessage';
+import Alert from 'components/Alert';
+import checkEmail from 'helpers/checkEmail';
 import { PATH_LOGIN, PATH_SIGN_UP_PREFERENCE } from 'routes/routes.paths';
+import useUsers from 'hooks/useUsers';
 import {
   StyledParagraph,
   StyledDivRadio,
@@ -20,24 +26,59 @@ import {
 import { signUpSchema } from './schema';
 
 const SignUp = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const history = useHistory();
+  const users = useUsers();
+
+  useEffect(() => {
+    if (showAlert) {
+      setTimeout(() => setShowAlert(false), 3000);
+    }
+  }, [showAlert]);
+
   const formik = useFormik({
     initialValues: {
       name: '',
       email: '',
       gender: 'M',
-      age: '',
+      age: Number(),
       password: '',
       confirmPassword: '',
     },
     onSubmit: (values) => {
-      history.push(PATH_SIGN_UP_PREFERENCE);
+      setIsLoading(true);
+      const isEmailExisted = checkEmail(values.email, users);
+      if (isEmailExisted) {
+        setTimeout(() => {
+          setIsLoading(false);
+          setShowAlert(true);
+          setErrorMessage('Email is already exists');
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          setIsLoading(false);
+          history.push(
+            PATH_SIGN_UP_PREFERENCE,
+            { ...values },
+          );
+        }, 1000);
+      }
     },
     validationSchema: signUpSchema,
   });
 
   return (
     <Wrapper header="Sign Up">
+      <Alert
+        show={showAlert}
+        dismissible
+        variant="danger"
+        onClose={() => setShowAlert(false)}
+      >
+        {errorMessage}
+      </Alert>
       <Form onSubmit={formik.handleSubmit}>
         <Form.Group
           as={Row}
@@ -113,6 +154,26 @@ const SignUp = () => {
         </Form.Group>
         <Form.Group
           as={Row}
+          controlId="age"
+        >
+          <Form.Label
+            column
+            md={4}
+          >
+            <StyledParagraph>Age</StyledParagraph>
+          </Form.Label>
+          <Col md={8}>
+            <Form.Control
+              type="text"
+              name="age"
+              value={formik.values.age === 0 ? '' : formik.values.age}
+              onChange={formik.handleChange}
+            />
+            {formik.errors.age && formik.touched.age && <ErrorMessage message={formik.errors.age} />}
+          </Col>
+        </Form.Group>
+        <Form.Group
+          as={Row}
           controlId="password"
         >
           <Form.Label
@@ -154,6 +215,7 @@ const SignUp = () => {
         </Form.Group>
         <Form.Group>
           <StyledButton
+            loading={isLoading}
             variant="primary"
             type="submit"
           >

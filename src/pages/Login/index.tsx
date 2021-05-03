@@ -27,6 +27,7 @@ import { loginSchema } from './schema';
 const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const users = useUsers();
   const history = useHistory();
 
@@ -54,6 +55,7 @@ const Login = () => {
         setTimeout(() => {
           setIsLoading(false);
           setShowAlert(true);
+          setErrorMessage('Wrong email or password');
           formik.resetForm();
         }, 500);
       }
@@ -69,7 +71,7 @@ const Login = () => {
         variant="danger"
         onClose={() => setShowAlert(false)}
       >
-        This is an alert
+        {errorMessage}
       </Alert>
       <Form onSubmit={formik.handleSubmit}>
         <Form.Group
